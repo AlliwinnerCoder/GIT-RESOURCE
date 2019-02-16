@@ -39,6 +39,16 @@ if Sinput > Smin2
     plot(Tplot1,Aplot1,'g');
     ylim([-Amax - Amax/10 Amax + Amax/10]);
     hold on;
+    
+    %VµÄÍ¼Ïñ T1%
+    Vplot1 = zeros(1,T1/0.001);
+    for i = 1 : T1/0.001
+        Vplot1(i) = Vs + 1/2 * Jmax * Tplot1(i)^2;
+    end
+    figure(3);
+    plot(Tplot1,Vplot1,'b');
+    ylim([Vs/5,Vmax + Vmax/10]);
+    hold on
     %----------------------------------T1--------------------------------------------%
     
     
@@ -58,6 +68,15 @@ if Sinput > Smin2
     end
     figure(2)
     plot(Tplot2,Aplot2,'g');
+    hold on;
+    
+    %VµÄÍ¼Ïñ T2%
+    Vplot2 = zeros(1,T2/0.001);
+    for i = 1 : T2/0.001
+        Vplot2(i) = Vs + 1/2 * Jmax * T1^2 + Amax * (Tplot2(i) - ThetaT2);
+    end
+    figure(3)
+    plot(Tplot2,Vplot2,'b');
     %---------------------------------T2---------------------------------------------%
     
     %---------------------------------T3---------------------------------------------%
@@ -81,6 +100,15 @@ if Sinput > Smin2
     figure(2)
     plot(Tplot3,Aplot3,'g');
     hold on;
+    
+    %VµÄÍ¼Ïñ T3%
+    Vplot3 = zeros(1,T3/0.001);
+    for i = 1 : T3/0.001
+        Vplot3(i) = Vs + 1/2 * Jmax * T1^2 + Amax * T2 + Amax * (Tplot3(i) - ThetaT3)- 1/2 * Jmax * (Tplot3(i) - ThetaT3)^2;
+    end
+    figure(3)
+    plot(Tplot3,Vplot3,'b');
+    hold on;
     %---------------------------------T3---------------------------------------------%
    
     %---------------------------------T4---------------------------------------------%
@@ -101,6 +129,15 @@ if Sinput > Smin2
     figure(2);
     plot(Tplot4,Jplot4,'g');
     hold on;
+    
+    %VµÄÍ¼Ïñ T4%
+    Vplot4 = zeros(1,T4/0.001);
+    for i = 1 : T4/0.001
+        Vplot4(i) = Vs + Amax * T2 + Amax * T3;
+    end
+    figure(3);
+    plot(Tplot4,Vplot4,'b');
+    hold on;
     %---------------------------------T4---------------------------------------------%
     
     %---------------------------------T5---------------------------------------------%
@@ -114,7 +151,7 @@ if Sinput > Smin2
     end
     figure(1);
     plot(Tplot5,Jplot5,'r');
-    hold on
+    hold on;
     
     %AµÄÍ¼Ïñ T5%
     Aplot5 = zeros(1,T5/0.001);
@@ -123,7 +160,16 @@ if Sinput > Smin2
     end
     figure(2);
     plot(Tplot5,Aplot5,'g');
-    hold on
+    hold on;
+    
+    %VµÄÍ¼Ïñ T5%
+    Vplot5 = zeros(1,T5/0.001);
+    for i = 1 : T5/0.001
+        Vplot5(i) = Vs + Amax * T2 + Amax * T3 - 1/2 * Jmax * (Tplot5(i) - ThetaT5)^2;
+    end
+    figure(3)
+    plot(Tplot5,Vplot5,'b');
+    hold on;
     %---------------------------------T5---------------------------------------------%
     
     %---------------------------------T6---------------------------------------------%
@@ -135,6 +181,7 @@ if Sinput > Smin2
     for i = 1 : T6/0.001
         Jplot6(i) = 0;
     end
+    
     %AµÄÍ¼Ïñ T6%
     Aplot6 = zeros(1,T6/0.001);
     for i = 1 : T6/0.001
@@ -142,7 +189,10 @@ if Sinput > Smin2
     end
     figure(2);
     plot(Tplot6,Aplot6,'g');
-    hold on
+    hold on;
+    
+    %VµÄÍ¼Ïñ T6%
+    
     %---------------------------------T6---------------------------------------------%
    
     %---------------------------------T7---------------------------------------------%

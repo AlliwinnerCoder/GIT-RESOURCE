@@ -5,7 +5,7 @@ Amax = 100;
 Jmax = 1000;
 Vmax = 200;
 Vs = 10;
-Sinput = 500;
+Sinput = 300;
 %常量计算%
 T1 = Amax / Jmax;
 T2 = (Vmax - Vs - Amax * T1) / Amax;
@@ -311,6 +311,53 @@ if Smin1 < Sinput && Sinput <= Smin2
     NewT2 = NewT2 / 0.001;
     NewT2 = floor(NewT2);
     NewT2 = NewT2 * 0.001;
+    
+    T2 = NewT2 / 2;
+    Vmax = Vs + Amax * T2 + Amax * T1;
+    Smin2 = 4 * Vs * T1 + 2 * Vs * T2 + 3 * Amax * T1 * T2 + 2 * Amax * T1^2 + Amax * T2^2;
+    
+     %---------------------------------T1---------------------------------------------%
+    %J的图像 T1% 
+    ThetaT1 = 0;
+    Tplot1 = linspace(0,T1,T1/0.001);
+    Jplot1 = zeros(1,T1/0.001);
+    for i = 1 : T1/0.001
+        Jplot1(i) = Jmax;
+    end
+    figure(1);
+    plot(Tplot1,Jplot1,'r');
+    ylim([-Jmax - Jmax/10 Jmax + Jmax/10]); 
+    hold on;
+    
+    %A的图像 T1%
+    Aplot1 = zeros(1,T1/0.001);
+    for i = 1 : T1/0.001
+        Aplot1(i) = Jmax * Tplot1(i);
+    end
+    figure(2);
+    plot(Tplot1,Aplot1,'g');
+    ylim([-Amax - Amax/10 Amax + Amax/10]);
+    hold on;
+    
+    %V的图像 T1%
+    Vplot1 = zeros(1,T1/0.001);
+    for i = 1 : T1/0.001
+        Vplot1(i) = Vs + 1/2 * Jmax * Tplot1(i)^2;
+    end
+    figure(3);
+    plot(Tplot1,Vplot1,'b');
+    ylim([Vs/5,Vmax + Vmax/10]);
+    hold on
+    
+    %S的图像 T1%
+    Splot1 = zeros(1,T1/0.001);
+    for i = 1 : T1/0.001
+        Splot1(i) = Vs * Tplot1(i) + 1/6 * Jmax * Tplot1(i)^3;
+    end
+    S1 = Vs * T1 + 1/6 * Jmax * T1^3;
+    figure(4);
+    plot(Tplot1,Splot1,'k');
+    %----------------------------------T1--------------------------------------------%
     
     
 end

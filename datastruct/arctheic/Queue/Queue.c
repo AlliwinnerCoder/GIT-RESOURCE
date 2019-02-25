@@ -1,4 +1,4 @@
-#include 'Queue.h'
+#include "Queue.h"
 #include<stdlib.h>
 #include<stdio.h>
 
@@ -49,7 +49,7 @@ void Enqueue(int X,Queue Q){
 		printf("Full Queue");
 	}else{
 		Q->Size ++;
-		Q->Rear = Succ(Q->rear,Q);
+		Q->Rear = Succ(Q->Rear,Q);
 		Q->Array[Q->Rear] = X;
 	}
 }
@@ -76,8 +76,50 @@ void DisposeQueue(Queue Q){
 	free(Q);
 }
 
- 
+void Dequeue(Queue Q){
+	if(Q->Rear == (Q->Front - 1)){
+		printf("The Queue is Empty");
+	}
+	
+	if(Q->Front < Q->Capacity - 1){
+		Q->Front += 1;
+	}
+	
+	if(Q->Front == Q->Capacity){
+		Q->Front = 0;
+	}
+}
+
+int FrontAndDequeue(Queue Q){
+	if(Q->Rear == (Q->Front - 1)){
+		printf("The Queue is Empty");
+	}
+	
+	int Result;
+	
+	if(Q->Front < Q->Capacity - 1){
+		Q->Front += 1;
+	}
+	
+	if(Q->Front == Q->Capacity){
+		Q->Front = 0;
+	}
+	
+	return Result;
+}
 
 int main(){
-	return 1;
+	Queue Q;
+	Q = CreateQueue(10);
+	MakeEmpty(Q);
+	printf("IsEmpty %d\n",IsEmpty(Q));
+	int i = 0;
+	for(i = 0;i < 10;i++)
+	{
+	    Enqueue(i+1,Q);
+	}
+	printf("IsEmpty %d\n",IsEmpty(Q));
+	printf("IsFull %d\n",IsFull(Q));
+	printf("%d",Q->Size);
+	return 0;
 }

@@ -74,36 +74,3 @@ void Insert(int X,List L,Position P){
 	P->Next = TmpCell;
 }
 
-
-int main(){
-	List L;
-    L = malloc(sizeof(struct Node));
-    Position node1 = malloc(sizeof(struct Node));
-	Position node2 = malloc(sizeof(struct Node));
-	Position node3 = malloc(sizeof(struct Node));
-	Position node4 = malloc(sizeof(struct Node));
-    L->Next = node1;
-	node1->Element = 1;
-	node1->Next = node2;
-	node2->Element = 2;
-	node2->Next = node3;
-	node3->Element = 3;
-	node3->Next = node4;
-	node4->Element = 4;
-	node4->Next = NULL;
-	printf("%d\n",IsEmpty(L));
-	printf("%d\n",IsLast(node2,L));
-	Position P = Find(2,L);
-	printf("%d\n",P->Next->Element);
-	Position Pv = FindPrevious(2,L);
-	printf("%d\n",Pv->Element);
-	Delete(2,L);
-	Position Pv1 = FindPrevious(3,L);
-	printf("%d\n",Pv1->Element);
-	Insert(5,L,node3);
-	Position Pv2 = FindPrevious(4,L);
-	printf("%d\n",Pv2->Element);
-	DeleteList(L);
-	printf("%d\n",IsEmpty(L));
-	return 1;
-}

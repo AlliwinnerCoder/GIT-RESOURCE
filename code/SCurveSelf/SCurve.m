@@ -5,7 +5,7 @@ Amax = 100;
 Jmax = 1000;
 Vmax = 200;
 Vs = 10;
-Sinput = 5;
+Sinput = 500;
 %≥£¡øº∆À„%
 T1 = Amax / Jmax;
 T2 = (Vmax - Vs - Amax * T1) / Amax;
